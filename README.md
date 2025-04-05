@@ -16,4 +16,4 @@
 ---
 👨‍🔬 **dashnat**  
 
-https://discord.gg/RhBdgqSHqh! 🤝  
+https://discord.gg/RhBdgqSHqh 🤝  
