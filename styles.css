@@ -1,0 +1,345 @@
+:root {
+    --primary-color: #FF4444;
+    --secondary-color: #CC0000;
+    --accent-color: #FFAAAA;
+    --light-color: #FFE5E5;
+    --dark-color: #330000;
+    --bg-color: #FFFFFF;
+    --text-color: #330000;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #CC0000;
+    --secondary-color: #FF4444;
+    --accent-color: #660000;
+    --light-color: #330000;
+    --dark-color: #FFE5E5;
+    --bg-color: #1A0000;
+    --text-color: #FFAAAA;
+}
+
+:root {
+    --primary-color: #FF4444;
+    --secondary-color: #CC0000;
+    --accent-color: #FFAAAA;
+    --light-color: #FFE5E5;
+    --dark-color: #330000;
+    --bg-color: #FFFFFF;
+    --text-color: #330000;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #CC0000;
+    --secondary-color: #FF4444;
+    --accent-color: #444444;
+    --light-color: #121212;
+    --dark-color: #FFFFFF;
+    --bg-color: #000000;
+    --text-color: #FFFFFF;
+}
+
+.clown-logo {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.4;
+    transform: scale(0.95);
+    transform-origin: top center;
+    transition: transform 1s ease, background-color 0.3s ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.clown-logo {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.clown-logo:hover {
+    transform: rotate(360deg);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--light-color);
+    border-left: 2px solid var(--secondary-color);
+    padding-left: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.dropbtn:hover {
+    background-color: var(--secondary-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--light-color);
+    min-width: 180px;
+    box-shadow: var(--shadow);
+    z-index: 1;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content a {
+    color: var(--dark-color);
+    padding: 0.6rem 0.8rem;
+    text-decoration: none;
+    display: block;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.controls {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.theme-switcher, .search-icon {
+    cursor: pointer;
+    padding: 0.4rem;
+    transition: var(--transition);
+    color: var(--light-color);
+    font-size: 1rem;
+}
+
+.theme-switcher:hover, .search-icon:hover {
+    transform: scale(1.1);
+}
+
+.search-container {
+    background-color: var(--light-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: var(--shadow);
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    outline: none;
+    transition: var(--transition);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.search-container input:focus {
+    border-color: var(--secondary-color);
+}
+
+.search-results {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 0.8rem;
+    border-radius: 4px;
+    display: none;
+    background-color: var(--light-color);
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-item {
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--accent-color);
+    color: var(--dark-color);
+}
+
+.search-item:hover {
+    background-color: var(--accent-color);
+}
+
+.search-item .highlight {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+main {
+    padding: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.medicine-info {
+    background-color: var(--light-color);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem auto;
+    width: 95%;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.info-container {
+    width: 100%;
+}
+
+.medicine-info h2 {
+    color: var(--secondary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.3rem;
+}
+
+.recipe {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    padding: 0.8rem;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    line-height: 1.6;
+}
+
+.clown-face {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    animation: clownFloat 3s infinite linear;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.8;
+}
+
+@keyframes clownFloat {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .dropdown {
+        margin-bottom: 0.3rem;
+    }
+    
+    .search-container {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .medicine-info {
+        width: 100%;
+        padding: 0.8rem;
+    }
+    
+    .recipe {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+}
