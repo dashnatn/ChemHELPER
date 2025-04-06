@@ -78,6 +78,7 @@
                 <div class="github-icon" id="githubIcon"><i class="fab fa-github"></i></div>
                 <div class="discord-icon" id="discordIcon"><i class="fab fa-discord"></i></div>
                 <div class="search-icon" id="searchIcon"><i class="fas fa-search"></i></div>
+                <div class="feedback-btn" id="feedbackBtn">Обратная связь</div>
             </div>
         </div>
     </header>
@@ -93,6 +94,18 @@
         </div>
     </div>
 
+    <div class="feedback-modal" id="feedbackModal">
+        <div class="feedback-container">
+            <div class="feedback-header">
+                <h3>Обратная связь</h3>
+                <div class="close-feedback" id="closeFeedback"><i class="fas fa-times"></i></div>
+            </div>
+            <textarea id="feedbackText" placeholder="Введите ваш отзыв или предложение..."></textarea>
+            <button id="sendFeedback">Отправить</button>
+            <div id="feedbackTimer" class="timer-hidden">Вы сможете отправить следующее сообщение через: <span id="timerValue">5:00</span></div>
+        </div>
+    </div>
+
     <main>
         <div class="medicine-info" id="medicineInfo">
             <div class="info-container">
@@ -104,5 +117,4 @@
 
     <script src="js.js"></script>
 </body>
-
 </html>
