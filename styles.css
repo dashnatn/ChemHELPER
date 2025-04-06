@@ -13,28 +13,6 @@
 [data-theme="dark"] {
     --primary-color: #CC0000;
     --secondary-color: #FF4444;
-    --accent-color: #660000;
-    --light-color: #330000;
-    --dark-color: #FFE5E5;
-    --bg-color: #1A0000;
-    --text-color: #FFAAAA;
-}
-
-:root {
-    --primary-color: #FF4444;
-    --secondary-color: #CC0000;
-    --accent-color: #FFAAAA;
-    --light-color: #FFE5E5;
-    --dark-color: #330000;
-    --bg-color: #FFFFFF;
-    --text-color: #330000;
-    --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    --transition: all 0.3s ease;
-}
-
-[data-theme="dark"] {
-    --primary-color: #CC0000;
-    --secondary-color: #FF4444;
     --accent-color: #444444;
     --light-color: #121212;
     --dark-color: #FFFFFF;
@@ -50,7 +28,6 @@
 }
 
 .search-modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -60,12 +37,55 @@
     backdrop-filter: blur(5px);
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-modal.active {
-    display: flex;
     opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    padding: 20px;
+}
+
+.search-modal.active .search-container {
+    transform: translateY(0);
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search-header h3 {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.close-search {
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.close-search:hover {
+    transform: rotate(90deg);
+    color: var(--primary-color);
 }
 
 * {
@@ -191,7 +211,7 @@ header {
     align-items: center;
 }
 
-.theme-switcher, .search-icon {
+.theme-switcher, .search-icon, .discord-icon, .github-icon {
     cursor: pointer;
     padding: 0.4rem;
     transition: var(--transition);
@@ -199,17 +219,16 @@ header {
     font-size: 1rem;
 }
 
-.theme-switcher:hover, .search-icon:hover {
+.theme-switcher:hover, .search-icon:hover, .discord-icon:hover, .github-icon:hover {
     transform: scale(1.1);
 }
 
-.search-container {
-    background-color: var(--light-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: var(--shadow);
+.discord-icon:hover {
+    color: #7289DA;
+}
+
+.github-icon:hover {
+    color: #f5f5f5;
 }
 
 .search-container input {

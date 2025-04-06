@@ -133,10 +133,12 @@ const searchResults = document.getElementById('searchResults');
 const medName = document.getElementById('medName');
 const medRecipe = document.getElementById('medRecipe');
 const themeSwitcher = document.getElementById('themeSwitcher');
+const discordIcon = document.getElementById('discordIcon');
+const githubIcon = document.getElementById('githubIcon');
 const body = document.body;
 const clownLogo = document.getElementById('clownLogo');
+const closeSearch = document.getElementById('closeSearch');
 
-// Смена темы
 function toggleTheme() {
     if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
@@ -154,7 +156,14 @@ if (savedTheme === 'dark') toggleTheme();
 
 themeSwitcher.addEventListener('click', toggleTheme);
 
-// Поиск лекарств
+discordIcon.addEventListener('click', () => {
+    window.open('https://discord.gg/RhBdgqSHqh', '_blank');
+});
+
+githubIcon.addEventListener('click', () => {
+    window.open('https://github.com/dashnatn', '_blank');
+});
+
 searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase();
     
@@ -175,7 +184,7 @@ searchInput.addEventListener('input', () => {
             const div = document.createElement('div');
             div.className = 'search-item';
             
-            // Подсветка совпадающего текста
+        
             const startIdx = name.toLowerCase().indexOf(query);
             const endIdx = startIdx + query.length;
             
@@ -187,10 +196,7 @@ searchInput.addEventListener('input', () => {
             
             div.addEventListener('click', () => {
                 showMedicineInfo(name);
-                searchModal.classList.remove('active');
-                searchInput.value = '';
-                searchResults.innerHTML = '';
-                searchResults.classList.remove('active');
+                closeSearchModal();
             });
             
             searchResults.appendChild(div);
@@ -216,6 +222,18 @@ function showMedicineInfo(name) {
     }
 }
 
+function openSearchModal() {
+    searchModal.classList.add('active');
+    searchInput.focus();
+}
+
+function closeSearchModal() {
+    searchModal.classList.remove('active');
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+    searchResults.classList.remove('active');
+}
+
 document.querySelectorAll('[data-med]').forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -224,7 +242,7 @@ document.querySelectorAll('[data-med]').forEach(item => {
 });
 
 function spawnClowns() {
-    const clownCount = 50;
+    const clownCount = 500; 
     for (let i = 0; i < clownCount; i++) {
         const clown = document.createElement('img');
         clown.src = 'assets/clownlogo.ico';
@@ -251,7 +269,11 @@ window.addEventListener('DOMContentLoaded', () => {
     showMedicineInfo('Дексалин');
 });
 
-searchIcon.addEventListener('click', () => {
-    searchModal.classList.add('active');
-    searchInput.focus();
+searchIcon.addEventListener('click', openSearchModal);
+closeSearch.addEventListener('click', closeSearchModal);
+
+searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+        closeSearchModal();
+    }
 });

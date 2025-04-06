@@ -75,17 +75,21 @@
             </nav>
             <div class="controls">
                 <div class="theme-switcher" id="themeSwitcher"><i class="fas fa-moon"></i></div>
+                <div class="github-icon" id="githubIcon"><i class="fab fa-github"></i></div>
+                <div class="discord-icon" id="discordIcon"><i class="fab fa-discord"></i></div>
                 <div class="search-icon" id="searchIcon"><i class="fas fa-search"></i></div>
             </div>
         </div>
     </header>
 
     <div class="search-modal" id="searchModal">
-        <div class="search-center-container">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Поиск лекарств...">
-                <div class="search-results" id="searchResults"></div>
+        <div class="search-container">
+            <div class="search-header">
+                <h3>Поиск лекарств</h3>
+                <div class="close-search" id="closeSearch"><i class="fas fa-times"></i></div>
             </div>
+            <input type="text" id="searchInput" placeholder="Введите название лекарства...">
+            <div class="search-results" id="searchResults"></div>
         </div>
     </div>
 
