@@ -1,4 +1,4 @@
-// LEKARSTVA
+// LEKARSTVA //gg
 const medicines = {
     "Дексалин": {
         help: "Удушение (2), Кровопотеря (1)",
