@@ -156,7 +156,7 @@ const WEBHOOK_URL = 'https://discord.com/api/webhooks/1358424547937747157/L8QaBS
 let feedbackCooldown = false;
 let cooldownInterval;
 
-// ==================== ФУНКЦИИ ДЛЯ ЛЕКАРСТВ ====================
+// ==================== ОСНОВНЫЕ ФУНКЦИИ ====================
 
 // Показать информацию о лекарстве
 function showMedicineInfo(name) {
@@ -176,6 +176,19 @@ function initMedicineDropdowns() {
             e.preventDefault();
             const medicineName = this.getAttribute('data-med');
             showMedicineInfo(medicineName);
+            
+            // Закрываем dropdown после выбора
+            this.closest('.dropdown-content').style.display = 'none';
+        });
+    });
+}
+
+// Инициализация кнопок dropdown
+function initDropdownButtons() {
+    document.querySelectorAll('.dropbtn').forEach(button => {
+        button.addEventListener('click', function() {
+            const dropdownContent = this.nextElementSibling;
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         });
     });
 }
@@ -229,7 +242,7 @@ function closeSearchModal() {
     searchResults.classList.remove('active');
 }
 
-// ==================== ФУНКЦИИ ОБРАТНОЙ СВЯЗИ ====================
+// ==================== ОБРАТНАЯ СВЯЗЬ ====================
 
 // Открыть модальное окно обратной связи
 function openFeedbackModal() {
@@ -270,6 +283,10 @@ function sendFeedbackToDiscord() {
         alert('Спасибо за ваш отзыв!');
         closeFeedbackModal();
         startCooldown(300); // 300 секунд = 5 минут
+    })
+    .catch(error => {
+        console.error('Ошибка отправки:', error);
+        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
     })
     .finally(() => {
         sendFeedback.disabled = false;
@@ -326,7 +343,7 @@ function toggleTheme() {
 
 // Анимация клоунов
 function spawnClowns() {
-    const clownCount = 500; 
+    const clownCount = 50; // Уменьшено для производительности
     for (let i = 0; i < clownCount; i++) {
         const clown = document.createElement('img');
         clown.src = 'assets/clownlogo.ico';
@@ -339,6 +356,17 @@ function spawnClowns() {
     setTimeout(() => {
         document.querySelectorAll('.clown-face').forEach(c => c.remove());
     }, 5000);
+}
+
+// Закрытие dropdown при клике вне его
+function initCloseDropdownsOnClickOutside() {
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+        }
+    });
 }
 
 // ==================== ИНИЦИАЛИЗАЦИЯ ====================
@@ -394,15 +422,28 @@ function initEventListeners() {
     });
 }
 
-// Запуск при загрузке страницы
-window.addEventListener('DOMContentLoaded', () => {
-    // Инициализация
+// Основная функция инициализации
+function init() {
+    // Инициализация темы
     initTheme();
+    
+    // Инициализация dropdown
+    initDropdownButtons();
     initMedicineDropdowns();
+    initCloseDropdownsOnClickOutside();
+    
+    // Инициализация поиска
     initSearch();
+    
+    // Инициализация обратной связи
     initFeedbackTimer();
+    
+    // Инициализация обработчиков событий
     initEventListeners();
     
     // Показать первое лекарство по умолчанию
     showMedicineInfo('Дексалин');
-});
+}
+
+// Запуск при полной загрузке страницы
+window.addEventListener('DOMContentLoaded', init);
