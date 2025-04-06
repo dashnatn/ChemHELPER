@@ -78,20 +78,16 @@ function sendFeedbackToDiscord() {
             content: `Новый отзыв от пользователя:\n\`\`\`${message}\`\`\``
         }),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Ошибка отправки');
-        }
-        return response.json();
-    })
     .then(() => {
         alert('Спасибо за ваш отзыв!');
         closeFeedbackModal();
         startCooldown(300); // 300 секунд = 5 минут
     })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Произошла ошибка при отправке отзыва. Пожалуйста, попробуйте позже.');
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Ошибка отправки');
+        }
+        return response.json();
     })
     .finally(() => {
         sendFeedback.disabled = false;
