@@ -398,7 +398,7 @@ function initEventListeners() {
     themeSwitcher.addEventListener('click', toggleTheme);
     
     // Иконки
-    discordIcon.addEventListener('click', () => window.open('https://discord.gg/RhBdgqSHqh', '_blank'));
+    discordIcon.addEventListener('click', () => window.open('https://discord.gg/DF4aZzK8Gk', '_blank'));
     githubIcon.addEventListener('click', () => window.open('https://github.com/dashnatn', '_blank'));
     
     // Поиск
