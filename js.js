@@ -1,4 +1,3 @@
-// Полный список лекарств
 const medicines = {
     "Дексалин": {
         help: "Удушение (2), Кровопотеря (1)",
@@ -140,22 +139,6 @@ const githubIcon = document.getElementById('githubIcon');
 const body = document.body;
 const clownLogo = document.getElementById('clownLogo');
 
-// Элементы обратной связи
-const feedbackBtn = document.getElementById('feedbackBtn');
-const feedbackModal = document.getElementById('feedbackModal');
-const feedbackText = document.getElementById('feedbackText');
-const sendFeedback = document.getElementById('sendFeedback');
-const closeFeedback = document.getElementById('closeFeedback');
-const feedbackTimer = document.getElementById('feedbackTimer');
-const timerValue = document.getElementById('timerValue');
-
-// Webhook URL для Discord
-const WEBHOOK_URL = 'https://discord.com/api/webhooks/1358424547937747157/L8QaBS9CY7wK7h4Y57XiCYknx-dr8Gv5fEgCE_phVEtClr8oGFCsZqiBz3SWwgq1ZN6W';
-
-// Переменные для таймера обратной связи
-let feedbackCooldown = false;
-let cooldownInterval;
-
 // ==================== ОСНОВНЫЕ ФУНКЦИИ ====================
 
 // Показать информацию о лекарстве
@@ -235,95 +218,12 @@ function openSearchModal() {
     searchInput.focus();
 }
 
+// Закрыть модальное окно поиска
 function closeSearchModal() {
     searchModal.classList.remove('active');
     searchInput.value = '';
     searchResults.innerHTML = '';
     searchResults.classList.remove('active');
-}
-
-// ==================== ОБРАТНАЯ СВЯЗЬ ====================
-
-// Открыть модальное окно обратной связи
-function openFeedbackModal() {
-    if (!feedbackCooldown) {
-        feedbackModal.classList.add('active');
-        feedbackText.focus();
-    }
-}
-
-// Закрыть модальное окно обратной связи
-function closeFeedbackModal() {
-    feedbackModal.classList.remove('active');
-    feedbackText.value = '';
-}
-
-// Отправить отзыв на Discord
-function sendFeedbackToDiscord() {
-    const message = feedbackText.value.trim();
-    
-    if (!message) {
-        alert('Пожалуйста, введите ваше сообщение');
-        return;
-    }
-    
-    sendFeedback.disabled = true;
-    sendFeedback.textContent = 'Отправка...';
-    
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            content: `Новый отзыв от пользователя:\n\`\`\`${message}\`\`\``
-        }),
-    })
-    .then(() => {
-        alert('Спасибо за ваш отзыв!');
-        closeFeedbackModal();
-        startCooldown(300); // 300 секунд = 5 минут
-    })
-    .catch(error => {
-        console.error('Ошибка отправки:', error);
-        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
-    })
-    .finally(() => {
-        sendFeedback.disabled = false;
-        sendFeedback.textContent = 'Отправить';
-    });
-}
-
-// Таймер обратной связи
-function startCooldown(seconds) {
-    feedbackCooldown = true;
-    feedbackBtn.classList.add('disabled');
-    
-    const endTime = Math.floor(Date.now() / 1000) + seconds;
-    localStorage.setItem('feedbackCooldownEnd', endTime.toString());
-    
-    updateTimer(seconds);
-    feedbackTimer.classList.add('timer-visible');
-    
-    cooldownInterval = setInterval(() => {
-        seconds--;
-        updateTimer(seconds);
-        
-        if (seconds <= 0) {
-            clearInterval(cooldownInterval);
-            feedbackCooldown = false;
-            feedbackBtn.classList.remove('disabled');
-            feedbackTimer.classList.remove('timer-visible');
-            localStorage.removeItem('feedbackCooldownEnd');
-        }
-    }, 1000);
-}
-
-// Обновление таймера
-function updateTimer(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    timerValue.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
 // ==================== ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ====================
@@ -332,18 +232,18 @@ function updateTimer(seconds) {
 function toggleTheme() {
     if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
-        themeSwitcher.innerHTML = '<i class="fas fa-moon"></i>';
+        themeSwitcher.innerHTML = '<svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
         localStorage.setItem('theme', 'light');
     } else {
         body.setAttribute('data-theme', 'dark');
-        themeSwitcher.innerHTML = '<i class="fas fa-sun"></i>';
+        themeSwitcher.innerHTML = '<svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
         localStorage.setItem('theme', 'dark');
     }
 }
 
 // Анимация клоунов
 function spawnClowns() {
-    const clownCount = 50; // Уменьшено для производительности
+    const clownCount = 50;
     for (let i = 0; i < clownCount; i++) {
         const clown = document.createElement('img');
         clown.src = 'assets/clownlogo.ico';
@@ -376,43 +276,21 @@ function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.setAttribute('data-theme', 'dark');
-        themeSwitcher.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-}
-
-// Проверка таймера обратной связи
-function initFeedbackTimer() {
-    if (localStorage.getItem('feedbackCooldownEnd')) {
-        const endTime = parseInt(localStorage.getItem('feedbackCooldownEnd'));
-        const currentTime = Math.floor(Date.now() / 1000);
-        
-        if (currentTime < endTime) {
-            startCooldown(endTime - currentTime);
-        }
+        themeSwitcher.innerHTML = '<svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
     }
 }
 
 // Инициализация всех обработчиков событий
 function initEventListeners() {
-    // Тема
     themeSwitcher.addEventListener('click', toggleTheme);
     
-    // Иконки
     discordIcon.addEventListener('click', () => window.open('https://discord.gg/DF4aZzK8Gk', '_blank'));
     githubIcon.addEventListener('click', () => window.open('https://github.com/dashnatn', '_blank'));
     
-    // Поиск
     searchIcon.addEventListener('click', openSearchModal);
     closeSearch.addEventListener('click', closeSearchModal);
     searchModal.addEventListener('click', (e) => e.target === searchModal && closeSearchModal());
     
-    // Обратная связь
-    feedbackBtn.addEventListener('click', openFeedbackModal);
-    closeFeedback.addEventListener('click', closeFeedbackModal);
-    feedbackModal.addEventListener('click', (e) => e.target === feedbackModal && closeFeedbackModal());
-    sendFeedback.addEventListener('click', sendFeedbackToDiscord);
-    
-    // Клоун
     clownLogo.addEventListener('click', () => {
         body.style.transform = 'rotate(360deg)';
         setTimeout(() => {
@@ -422,28 +300,14 @@ function initEventListeners() {
     });
 }
 
-// Основная функция инициализации
 function init() {
-    // Инициализация темы
     initTheme();
-    
-    // Инициализация dropdown
     initDropdownButtons();
     initMedicineDropdowns();
     initCloseDropdownsOnClickOutside();
-    
-    // Инициализация поиска
     initSearch();
-    
-    // Инициализация обратной связи
-    initFeedbackTimer();
-    
-    // Инициализация обработчиков событий
     initEventListeners();
-    
-    // Показать первое лекарство по умолчанию
     showMedicineInfo('Дексалин');
 }
 
-// Запуск при полной загрузке страницы
 window.addEventListener('DOMContentLoaded', init);
