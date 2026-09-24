@@ -1,6 +1,3 @@
-// Автосгенерировано из corvax-team/ss14-wl (Resources/Prototypes/Recipes/Reactions/medicine.yml,
-// Resources/Prototypes/Reagents/medicine.yml, Resources/Locale/ru-RU/reagents).
-// Формат рецепта соответствует реальным пропорциям реакции в игре.
 export const MEDICINES = {
   "Дексалин": {
     category: "Удушение",
