@@ -19,76 +19,7 @@
                 <div class="logo">ХимПомощник</div>
             </div>
             
-            <nav class="main-nav">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        Удушение
-                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-med="Дексалин">Дексалин</a>
-                        <a href="#" data-med="Дексалин плюс">Дексалин плюс</a>
-                        <a href="#" data-med="Инапровалин">Инапровалин</a>
-                        <a href="#" data-med="Эпинефрин">Эпинефрин</a>
-                        <a href="#" data-med="Криоксадон">Криоксадон</a>
-                    </div>
-                </div>
-                
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        Кровопотеря
-                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-med="Дексалин">Дексалин</a>
-                        <a href="#" data-med="Дексалин плюс">Дексалин плюс</a>
-                        <a href="#" data-med="Транексамовая кислота">Транексамовая кислота</a>
-                        <a href="#" data-med="Железо (НеАрахниды)">Железо (НеАрахниды)</a>
-                        <a href="#" data-med="Медь (Арахниды)">Медь (Арахниды)</a>
-                        <a href="#" data-med="Физраствор">Физраствор</a>
-                        <a href="#" data-med="Ихор">Ихор</a>
-                    </div>
-                </div>
-                
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        Повреждения
-                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-med="Бикаридин">Бикаридин</a>
-                        <a href="#" data-med="Бруизин">Бруизин</a>
-                        <a href="#" data-med="Лацеринол">Лацеринол</a>
-                        <a href="#" data-med="Пунктураз">Пунктураз</a>
-                        <a href="#" data-med="Инсузин">Инсузин</a>
-                    </div>
-                </div>
-                
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        Яды/Радиация
-                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-med="Диловен">Диловен</a>
-                        <a href="#" data-med="Стеллибинин">Стеллибинин</a>
-                        <a href="#" data-med="Хироналин">Хироналин</a>
-                        <a href="#" data-med="Аритразин">Аритразин</a>
-                    </div>
-                </div>
-                
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        Антистан
-                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#" data-med="Синаптизин">Синаптизин</a>
-                        <a href="#" data-med="Эфедрин">Эфедрин</a>
-                        <a href="#" data-med="Дезоксиэфедрин">Дезоксиэфедрин</a>
-                    </div>
-                </div>
-            </nav>
+            <nav class="main-nav" id="mainNav"></nav>
             
             <div class="controls">
                 <button class="control-btn" id="themeSwitcher" aria-label="Смена темы">
@@ -110,7 +41,7 @@
     <div class="warning-banner">
         <div class="warning-content">
             <svg class="warning-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            <span>Внимание: Данный проект больше не обновляется. Представленная информация о рецептах может быть неактуальной.</span>
+            <span>Рецепты синхронизированы с исходниками сервера Corvax (corvax-team/ss14-wl). Актуальность зависит от изменений на сервере после обновления.</span>
         </div>
     </div>
 
@@ -138,6 +69,6 @@
 
 
 
-    <script src="js.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
